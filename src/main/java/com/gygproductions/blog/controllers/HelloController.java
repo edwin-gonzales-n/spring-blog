@@ -1,10 +1,7 @@
 package com.gygproductions.blog.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HelloController {
@@ -18,6 +15,12 @@ public class HelloController {
     @ResponseBody
     public String logout(){
         return "You have been logged out";
+    }
+
+    @GetMapping("/hello/{name}/{lastname}")
+    @ResponseBody
+    public String sayHelloFL(@PathVariable String name, @PathVariable String lastname){
+        return String.format("Hello there %s %s", name, lastname);
     }
 
     @RequestMapping(path = "/lights", method = RequestMethod.GET)
