@@ -17,10 +17,9 @@ public class HelloController {
         return "You have been logged out";
     }
 
-    @GetMapping("/hello/{name}/{lastname}")
-    @ResponseBody
-    public String sayHelloFL(@PathVariable String name, @PathVariable String lastname){
-        return String.format("Hello there %s %s", name, lastname);
+    @GetMapping("/hello/{name}")
+    public String sayHelloFL(@PathVariable String name){
+        return "hello";
     }
 
     @RequestMapping(path = "/lights", method = RequestMethod.GET)

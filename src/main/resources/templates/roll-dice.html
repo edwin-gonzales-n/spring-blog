@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials :: head" />
+<body>
+<nav th:replace="partials :: navbar" />
+<h1 style="text-align: center">Let's place some dice rolling!</h1>
+
+<h3 style="text-align: center">The number you guessed was</h3>
+<br />
+<h3 style="text-align: center"><span th:text="${guess}">World</span></h3>
+<br />
+<h3 style="text-align: center">The number was <span th:text="${number}"></span></h3>
+
+
+</body>
+</html>

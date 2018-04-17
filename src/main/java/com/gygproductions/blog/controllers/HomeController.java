@@ -1,16 +1,38 @@
 package com.gygproductions.blog.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Random;
 
 @Controller
 public class HomeController {
 
-    @GetMapping("/")
-    @ResponseBody
+    @GetMapping("/home")
     public String hello() {
-        return "This is the landing page.";
+        return "home";
+    }
+
+    @GetMapping("/welcome")
+    public String welcome() {
+        return "welcome";
+    }
+
+    @GetMapping("/roll-dice")
+    public String rollDice(){
+        return "roll-dice";
+    }
+
+    @GetMapping("/roll-dice/{guess}")
+    public String rollDiceGetGuess(@PathVariable String guess, Model model){
+        Random rand = new Random();
+        int  n = rand.nextInt(6) + 1;
+        model.addAttribute("number",n);
+        return "roll-dice";
     }
 
 }
