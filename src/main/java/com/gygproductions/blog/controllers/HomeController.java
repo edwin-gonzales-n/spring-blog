@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 @Controller
@@ -14,6 +16,27 @@ public class HomeController {
 
     @GetMapping("/home")
     public String hello() {
+        return "home";
+    }
+
+    @GetMapping("/home/{name}")
+    public String welcomeUser(
+            @PathVariable String name,
+             Model model
+    ){
+        model.addAttribute("name", name);
+        return "home";
+    }
+
+    @GetMapping("/home/users")
+    public String welcomeUsers(Model model){
+
+        List<String> users = new ArrayList<>();
+        users.add("Edwin");
+        users.add("Gonzito");
+        users.add("Manuelito");
+
+        model.addAttribute("users", users);
         return "home";
     }
 

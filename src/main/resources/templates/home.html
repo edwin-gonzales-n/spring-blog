@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8" />
     <title>Home</title>
@@ -7,6 +7,22 @@
 <body>
 
 <h1>This is the home page</h1>
+<br />
+
+<div th:if="${name}">
+    <h3>Welcome, <span th:text="${name}"></span></h3>
+</div>
+
+<div th:if="${users}">
+    <div th:each="user: ${users}">
+        <h3>
+            Welcome to the home page <span th:text="${user}"></span>
+        </h3>
+    </div>
+</div>
+
+<div th:include="partials/footer :: footer"></div>
+<div th:replace="partials/footer :: footer"></div>
 
 </body>
 </html>

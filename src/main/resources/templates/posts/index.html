@@ -1,7 +1,22 @@
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="partials :: head" />
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: header('Posts')"></head>
 <body>
-<nav th:replace="partials :: navbar" />
-<h1 style="text-align: center">These are all the posts!</h1>
+
+<div th:replace="partials/navbar :: navbar"></div>
+
+<main class="container">
+
+    <h1>Posts</h1>
+
+    <div th:each="post : ${posts}">
+        <h3><span th:text="${post.title}"></span></h3>
+        <p><span th:text="${post.body}"></span></p>
+    </div>
+
+</main>
+
+<div th:replace="partials/footer :: footer"></div>
+
 </body>
 </html>
