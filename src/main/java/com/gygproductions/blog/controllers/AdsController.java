@@ -5,7 +5,10 @@ import com.gygproductions.blog.repositories.AdRepository;
 import com.gygproductions.blog.services.AdService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 public class AdsController {
@@ -35,8 +38,12 @@ public class AdsController {
     }
 
     @PostMapping("/ads/create")
-    public String insert(@ModelAttribute Ad newAd) {
-        adDao.save(newAd);
+    public String create(@Valid Ad ad, Errors errors, Model model) {
+        if (errors.hasErrors()){
+            model.addAttribute("ad", ad);
+            return "ads/created_ad";
+        }
+        adDao.save(ad);
         return "redirect:/ads";
     }
 

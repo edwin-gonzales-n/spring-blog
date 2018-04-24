@@ -3,7 +3,9 @@ package com.example.blog.controllers;
 
 
 import com.gygproductions.blog.models.Post;
+import com.gygproductions.blog.models.User;
 import com.gygproductions.blog.services.PostService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,14 +38,14 @@ public class PostController {
     }
 
     @GetMapping("/posts/create")
-    @ResponseBody
     public String create() {
         return "Here is the post create form...";
     }
 
     @PostMapping("/posts/create")
-    @ResponseBody
     public String insert() {
+        User loggedInUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         return "Inserted new post!";
     }
 
