@@ -1,9 +1,24 @@
 package com.gygproductions.blog.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "posts")
 public class Post {
 
+    @Id
+    @GeneratedValue
+    private long id;
+
+    @Column(nullable = false)
     private String title;
+
+    @Column(nullable = false)
     private String body;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Post() {
     }
@@ -27,5 +42,9 @@ public class Post {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

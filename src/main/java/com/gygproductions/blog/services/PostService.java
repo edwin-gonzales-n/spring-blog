@@ -1,6 +1,7 @@
 package com.gygproductions.blog.services;
 
 import com.gygproductions.blog.models.Post;
+import com.gygproductions.blog.repositories.PostRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,25 +10,25 @@ import java.util.List;
 @Service
 public class PostService {
 
-    private List<Post> posts;
+    private final PostRepository postDao;
 
-    public PostService() {
-        this.posts = new ArrayList<>();
-        createPosts();
+    public PostService(PostRepository postDao) {
+        this.postDao = postDao;
     }
 
-    public List<Post> getAllPosts() {
-        return posts;
+    public Post findOne(long id) {
+        return postDao.findOne(id);
     }
 
-    public Post getPost(long id) {
-        return posts.get(((int) id) - 1);
+    public Iterable<Post> findAll() {
+        return postDao.findAll();
     }
 
-    public void createPosts() {
-        posts.add(new Post("Test Title 1", "This is a test post description 1."));
-        posts.add(new Post("Test Title 2", "This is a test post description 2."));
-        posts.add(new Post("Test Title 3", "This is a test post description 3."));
-        posts.add(new Post("Test Title 4", "This is a test post description 4."));
+    public void save(Post post) {
+        postDao.save(post);
+    }
+
+    public void delete(long id) {
+        postDao.deleteById(id);
     }
 }
